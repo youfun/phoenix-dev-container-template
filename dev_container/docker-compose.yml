@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # Phoenix application service
+  app:
+    build:
+      context: ..
+      dockerfile: ./dev_container/Dockerfile
+    container_name: phoenix_app_dev
+    # Key: Mount the current directory to the container's /app directory
+    # Enables real-time synchronization of local code changes inside the container
+    volumes:
+      - ../:/app
+    ports:
+      # Port mapping: <local port>:<container port>
+      # Note: Container port must match the http[:port] in config/dev.exs
+      - "4000:4000"  # Phoenix app
+    # Environment variables for database connection
+    environment:
+      - MIX_ENV=dev
+    # Dependencies: Ensure db container starts before app container
+    depends_on:
+      - db
+    # Keep standard input open, important for interactive sessions like IEx
+    stdin_open: true
+    tty: true
+
+  # PostgreSQL database service
+  db:
+    image: postgres:15-alpine
+    container_name: phoenix_db_dev
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dev_container_template_dev
+    ports:
+      # Map database port to local for debugging with tools like Navicat, DBeaver
+      - "5432:5432"
+    volumes:
+      # Use named volume to persist database data
+      - postgres_data:/var/lib/postgresql/data
+
+# Define named volumes
+volumes:
+  postgres_data:

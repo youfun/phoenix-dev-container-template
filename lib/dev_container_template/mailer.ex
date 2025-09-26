@@ -1,0 +1,3 @@
+defmodule DevContainerTemplate.Mailer do
+  use Swoosh.Mailer, otp_app: :dev_container_template
+end
