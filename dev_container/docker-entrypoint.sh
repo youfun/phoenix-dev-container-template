@@ -8,7 +8,6 @@ set -e
 echo "Waiting for postgres..."
 sleep 5
 
-# Added: Check if mix.lock file exists. If not, run mix deps.get
 # This ensures all dependencies are pulled and locked before running any mix tasks.
 if [ ! -f "mix.lock" ]; then
   echo "mix.lock not found. Running mix deps.get..."
