@@ -6,6 +6,7 @@
 
 ## 前提条件
 
+- 如果您使用的是 Windows，请先从 https://www.docker.com 下载并安装 Docker Desktop。
 - 安装 Docker 和 Docker Compose。
 
 ## 使用步骤

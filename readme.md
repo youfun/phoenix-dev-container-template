@@ -6,6 +6,7 @@ This development container is based on Docker and is used to run the Phoenix app
 
 ## Prerequisites
 
+- If you are on Windows, download and install Docker Desktop from https://www.docker.com.
 - Install Docker and Docker Compose.
 
 ## Usage Steps
